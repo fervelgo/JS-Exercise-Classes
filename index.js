@@ -86,13 +86,16 @@ class Airplane {
       this.tank = this.tank + gallons;
     }
     drive(distance){
-      const drivableMiles = this.tank * this.milesPerGallon;
-        
+      /*const drivableMiles = this.tank * this.milesPerGallon;
+        if(drivableMiles < this.milesPerGallon*)*/
+
       this.odometer = this.odometer + distance;
-      this.tank = this.tank - distance/this.milesPerGallon;
+      this.tank = distance/this.milesPerGallon;
       if(this.tank = 0) {
-        console.log( `I ran out of fuel at ${this.odometer} miles`);
-      }
+        console.log( `I ran out of fuel at ${this.odometer} miles`)
+      } /*else if (this.tank > 0) {
+        this.tank = this.tank - distance/this.milesPerGallon;
+      }*/
     }
 
   }
@@ -110,7 +113,15 @@ class Airplane {
           + {name} and {location} of course come from the instance's own properties.
   */
  class Lambdasian {
-    
+    constructor (attrs){
+      this.name = attrs.name;
+      this.age = attrs.age;
+      this.location = attrs.location;
+    }
+
+    speak(){
+       return `Hello my name is ${this.name}. I am from ${this.location}`
+    }
   }
   
   /*
@@ -127,9 +138,22 @@ class Airplane {
           + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
- class Instructor {
+      class Instructor extends Lambdasian {
+        constructor(attrs){
+          super(attrs);
+          this.specialty = attrs.specialty;
+          this.favLanguage = attrs.favLanguage;
+          this.catchPhrase = attrs.catchPhrase;
+        }
+        demo(subject){
+          return `Today we are learning about ${subject}`;
+        }
 
- }
+        grade(student,subject){
+          return `${student.name} receives a perfect score on ${subject}`
+        }
+      }
+ 
   /*
     TASK 5
       - Write a Student class extending Lambdasian.
