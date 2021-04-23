@@ -83,22 +83,23 @@ class Airplane {
       this.odometer = 0;
     }
     fill(gallons){
-      this.tank = this.tank + gallons;
+      return this.tank = this.tank + gallons;
     }
     drive(distance){
-      /*const drivableMiles = this.tank * this.milesPerGallon;
-        if(drivableMiles < this.milesPerGallon*)*/
-
-      this.odometer = this.odometer + distance;
-      this.tank = distance/this.milesPerGallon;
-      if(this.tank = 0) {
-        console.log( `I ran out of fuel at ${this.odometer} miles`)
-      } /*else if (this.tank > 0) {
-        this.tank = this.tank - distance/this.milesPerGallon;
-      }*/
+      const drivableMiles = this.tank * this.milesPerGallon;
+      this.tank = this.tank - distance/this.milesPerGallon;
+      if (this.tank <= 0) {
+        this.odometer = drivableMiles;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles`
+      } else if (this.tank > 0) {
+        this.odometer = distance;
+      }
     }
 
   }
+
+
   
   /*
     TASK 3
@@ -210,7 +211,7 @@ class Airplane {
      standUp(slackChannel){
        return `${this.name} announces to ${slackChannel}, @channel standy times!`
      }
-     debugsCode(student,subject){ /*Is there something ot take into account given that the student argument is going to be an object*/
+     debugsCode(student,subject){   /*Is there something ot take into account given that the student argument is going to be an object*/
        return `${this.name} debugs ${student.name}'s code on ${subject}`
      }
  }
